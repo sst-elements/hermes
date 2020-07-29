@@ -1,9 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(hermes CXX)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+project(hermes)
 
 # add compiler warnings
 add_compile_options(-Wall -Wextra -Wpedantic)
@@ -51,10 +47,10 @@ add_custom_target(
 # -------------------- SST CONFIGS --------------------
 
 # -------------------- SST EXECUTABLES --------------------
-# set(
-#     SOURCES
-#     libhermes.c
-# )
+set(
+    SOURCES
+    libhermes.c
+)
 
 # -------------------- COMPILE WITH EXISTING ELEMENTS --------------------
 
@@ -73,7 +69,6 @@ if ("${thornhill}" STREQUAL "")
 endif ()
 
 if (NOT "${thornhill}" STREQUAL "")
-    message(STATUS ${thornhill})
     list(APPEND INCLUDES -I${thornhill})
     list(APPEND LIBRARIES -L${thornhill} -lthornhill)
 endif ()
@@ -82,10 +77,9 @@ unset(thornhill CACHE)
 
 # -------------------- COMPILE WITH EXISTING ELEMENTS --------------------
 
-
-# add_executable(
-#     lib${CMAKE_PROJECT_NAME}.so
-#     ${SOURCES}
-# )
-# _sst_compile_link(lib${CMAKE_PROJECT_NAME}.so)
+add_executable(
+    lib${CMAKE_PROJECT_NAME}.so
+    ${SOURCES}
+)
+_sst_compile_link(lib${CMAKE_PROJECT_NAME}.so)
 # -------------------- SST EXECUTABLES --------------------
